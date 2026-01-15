@@ -1,6 +1,6 @@
 {
-  "name": "AdGenius AI",
-  "description": "A professional-grade digital ad creation tool powered by Gemini 2.5 Flash Image. Upload product photos, select artistic styles, and generate high-converting social media and display ads in seconds.",
+  "name": "AI-ADS-Azhar",
+  "description": "Professional-grade AI digital ad generation tool using Gemini 2.5 Flash Image. Optimized for high-fidelity social media and display ads.",
   "requestFramePermissions": [
     "camera"
   ]

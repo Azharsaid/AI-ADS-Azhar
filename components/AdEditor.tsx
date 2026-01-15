@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from './Button.tsx';
 import { AD_STYLES } from '../constants.tsx';
 import { ProductData, AdGenerationState } from '../types.ts';
@@ -62,7 +62,7 @@ export const AdEditor: React.FC = () => {
     if (!generation.resultImage) return;
     const link = document.createElement('a');
     link.href = generation.resultImage;
-    link.download = `ad-genius-${Date.now()}.png`;
+    link.download = `azhar-ad-${Date.now()}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -70,11 +70,11 @@ export const AdEditor: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-10">
-      {/* Left Column: Configuration */}
+      {/* Configuration Column */}
       <div className="lg:col-span-5 space-y-8">
         <section className="bg-slate-900 p-6 rounded-3xl shadow-xl border border-slate-800">
           <h2 className="text-lg font-bold text-white mb-5 flex items-center gap-3">
-            <span className="bg-indigo-600/20 text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center text-xs border border-indigo-500/30">1</span>
+            <span className="bg-indigo-600/20 text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center text-xs border border-indigo-500/30 font-mono">01</span>
             Base Asset
           </h2>
           <div 
@@ -89,7 +89,7 @@ export const AdEditor: React.FC = () => {
               <div className="relative group">
                 <img src={productData.image} alt="Product" className="max-h-56 mx-auto rounded-xl shadow-2xl" />
                 <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center backdrop-blur-sm">
-                  <span className="text-white text-sm font-bold px-4 py-2 bg-indigo-600 rounded-full shadow-lg">Replace Image</span>
+                  <span className="text-white text-sm font-bold px-4 py-2 bg-indigo-600 rounded-full shadow-lg">Change Asset</span>
                 </div>
               </div>
             ) : (
@@ -117,8 +117,8 @@ export const AdEditor: React.FC = () => {
 
         <section className="bg-slate-900 p-6 rounded-3xl shadow-xl border border-slate-800">
           <h2 className="text-lg font-bold text-white mb-5 flex items-center gap-3">
-            <span className="bg-indigo-600/20 text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center text-xs border border-indigo-500/30">2</span>
-            Artistic Style
+            <span className="bg-indigo-600/20 text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center text-xs border border-indigo-500/30 font-mono">02</span>
+            Style Engine
           </h2>
           <div className="grid grid-cols-3 gap-3 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
             {AD_STYLES.map((style) => (
@@ -142,13 +142,13 @@ export const AdEditor: React.FC = () => {
 
         <section className="bg-slate-900 p-6 rounded-3xl shadow-xl border border-slate-800">
           <h2 className="text-lg font-bold text-white mb-5 flex items-center gap-3">
-            <span className="bg-indigo-600/20 text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center text-xs border border-indigo-500/30">3</span>
+            <span className="bg-indigo-600/20 text-indigo-400 w-8 h-8 rounded-full flex items-center justify-center text-xs border border-indigo-500/30 font-mono">03</span>
             Creative Brief
           </h2>
           <textarea 
             value={productData.prompt}
             onChange={(e) => setProductData(prev => ({ ...prev, prompt: e.target.value }))}
-            placeholder="Describe the mood, lighting, or specific props (e.g., 'Golden hour light reflecting on a marble table with palm leaf shadows')"
+            placeholder="Describe surroundings (e.g., 'floating in space', 'on a marble table')"
             className="w-full h-28 p-4 rounded-2xl bg-slate-950 border border-slate-800 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all resize-none outline-none text-slate-300 text-sm placeholder:text-slate-600"
           />
         </section>
@@ -159,17 +159,17 @@ export const AdEditor: React.FC = () => {
           className="w-full py-5 text-lg font-black tracking-wide uppercase shadow-2xl shadow-indigo-600/20 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500"
           disabled={!productData.image}
         >
-          {generation.isGenerating ? 'Synthesizing...' : 'Generate Campaign Asset'}
+          {generation.isGenerating ? 'Synthesizing...' : 'Generate Ad'}
         </Button>
       </div>
 
-      {/* Right Column: Preview/Result */}
+      {/* Output Column */}
       <div className="lg:col-span-7">
         <div className="bg-slate-900 rounded-[2.5rem] p-6 lg:p-10 min-h-[700px] flex flex-col shadow-2xl border border-slate-800 sticky top-24">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-              <h3 className="text-slate-300 font-bold tracking-widest uppercase text-xs">Output Monitor</h3>
+              <h3 className="text-slate-300 font-bold tracking-widest uppercase text-xs">Campaign Monitor</h3>
             </div>
             {generation.resultImage && (
               <Button 
@@ -191,8 +191,8 @@ export const AdEditor: React.FC = () => {
                    <div className="absolute inset-4 rounded-full border-4 border-purple-500 border-b-transparent animate-spin-slow"></div>
                 </div>
                 <div className="animate-pulse">
-                  <p className="text-white font-bold text-xl">Gemini 2.5 is thinking...</p>
-                  <p className="text-slate-500 text-sm mt-2 font-medium">Calibrating styles and atmospheric particles</p>
+                  <p className="text-white font-bold text-xl">Gemini is thinking...</p>
+                  <p className="text-slate-500 text-sm mt-2 font-medium">Processing textures and lighting arrays</p>
                 </div>
               </div>
             ) : generation.resultImage ? (
@@ -210,7 +210,7 @@ export const AdEditor: React.FC = () => {
                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                    </svg>
                 </div>
-                <p className="text-slate-500 font-medium text-lg leading-relaxed max-w-sm mx-auto">Configure your creative requirements on the left to initialize the engine.</p>
+                <p className="text-slate-500 font-medium text-lg max-w-sm mx-auto">Complete the requirements on the left to initialize generation.</p>
               </div>
             )}
 
@@ -228,12 +228,12 @@ export const AdEditor: React.FC = () => {
           
           <div className="mt-8 grid grid-cols-2 gap-4">
              <div className="bg-slate-950/50 border border-slate-800 p-4 rounded-2xl">
-                <p className="text-indigo-400 text-[10px] font-black uppercase tracking-widest mb-1">Engine Status</p>
-                <p className="text-slate-300 text-xs font-bold">GEMINI-2.5-FLASH-IMAGE ACTIVE</p>
+                <p className="text-indigo-400 text-[10px] font-black uppercase tracking-widest mb-1">AI Engine</p>
+                <p className="text-slate-300 text-xs font-bold font-mono">2.5-FLASH-IMAGE</p>
              </div>
              <div className="bg-slate-950/50 border border-slate-800 p-4 rounded-2xl">
-                <p className="text-purple-400 text-[10px] font-black uppercase tracking-widest mb-1">Resolution</p>
-                <p className="text-slate-300 text-xs font-bold">1024 x 1024 (HD OPTIMIZED)</p>
+                <p className="text-purple-400 text-[10px] font-black uppercase tracking-widest mb-1">Output</p>
+                <p className="text-slate-300 text-xs font-bold font-mono">1024x1024 PNG</p>
              </div>
           </div>
         </div>
@@ -245,7 +245,7 @@ export const AdEditor: React.FC = () => {
           to { transform: rotate(-360deg); }
         }
         .animate-spin-slow {
-          animation: spin-slow 3s linear infinite;
+          animation: spin-slow 4s linear infinite;
         }
       `}</style>
     </div>
